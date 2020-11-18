@@ -2,5 +2,7 @@ Revision history for Perl extension Text-Conceal
 
 {{$NEXT}}
 
-    - original version
+0.98 2020-11-18T02:44:32Z
+
+    - Spin off from Text::VisualPrintf::Transform.
 

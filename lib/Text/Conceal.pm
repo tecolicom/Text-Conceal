@@ -1,4 +1,6 @@
-package Text::VisualPrintf::Transform;
+package Text::Conceal;
+
+our $VERSION = '0.98';
 
 use v5.14;
 use warnings;
@@ -164,18 +166,22 @@ __END__
 
 =head1 NAME
 
-Text::VisualPrintf::Transform - transform and recover interface for text processing
+Text::Conceal - transform and recover interface for text processing
+
+=head1 VERSION
+
+Version 0.98
 
 =head1 SYNOPSIS
 
-    use Text::VisualPrintf::Transform;
-    my $xform = Text::VisualPrintf::Transform->new(
+    use Text::Conceal;
+    my $conceal = Text::Conceal->new(
         length => \&sub,
         match  => qr/regex/,
         );
-    $xform->encode(@args);
+    $conceal->encode(@args);
     $_ = foo(@args);
-    $xform->decode($_);
+    $conceal->decode($_);
 
 =head1 DESCRIPTION
 
@@ -192,9 +198,9 @@ In this case, make transform object with B<length> function which can
 correctly handle wide character width, and the pattern of string to be
 replaced.
 
-    use Text::VisualPrintf::Transform;
+    use Text::Conceal;
     use Text::VisualWidth::PP;
-    my $xform = Text::VisualPrintf::Transform->new(
+    my $conceal = Text::Conceal->new(
         length => \&Text::VisualWidth::PP::width,
         match  => qr/\P{ASCII}+/,
     );
@@ -203,34 +209,34 @@ Then next program encode data, call B<expand>() function, and recover
 the result into original text.
 
     my @lines = <>;
-    $xform->encode(@lines);
+    $conceal->encode(@lines);
     my @expanded = expand @lines;
-    $xform->decode(@expanded);
+    $conceal->decode(@expanded);
     print @expanded;
 
 Be aware that B<encode> and B<decode> method alter the values of given
 arguments.  Because they return results as a list too, this can be
 done more simply.
 
-    print $xform->decode(expand($xform->encode(<>)));
+    print $conceal->decode(expand($conceal->encode(<>)));
 
 Next program implements ANSI terminal sequence aware expand command.
 
     use Text::ANSI::Fold::Util qw(ansi_width);
 
-    my $xform = Text::VisualPrintf::Transform->new(
+    my $conceal = Text::Conceal->new(
         length => \&ansi_width,
         match  => qr/[^\t\n]+/,
     );
     while (<>) {
-        print $xform->decode(expand($xform->encode($_)));
+        print $conceal->decode(expand($conceal->encode($_)));
     }
 
 Calling B<decode> method with many arguments is not a good idea, since
 replacement cycle is performed against all entries.  So collect them
 into single chunk if possible.
 
-    print $xform->decode(join '', @expanded);
+    print $conceal->decode(join '', @expanded);
 
 =head1 METHODS
 
