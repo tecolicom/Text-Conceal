@@ -1,5 +1,5 @@
 {
-   "abstract" : "transform and recover interface for text processing",
+   "abstract" : "conceal and recover interface for text processing",
    "author" : [
       "Kazumasa Utashiro"
    ],

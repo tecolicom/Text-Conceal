@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/kaz-utashiro/Text-Conceal.svg?branch=master)](https://travis-ci.com/kaz-utashiro/Text-Conceal)
 # NAME
 
-Text::Conceal - transform and recover interface for text processing
+Text::Conceal - conceal and recover interface for text processing
 
 # VERSION
 
@@ -29,9 +29,9 @@ to calculate string width.  So next program does not work as we wish.
     use Text::Tabs;
     print expand <>;
 
-In this case, make transform object with **length** function which can
+In this case, make conceal object with **length** function which can
 correctly handle wide character width, and the pattern of string to be
-replaced.
+concealed.
 
     use Text::Conceal;
     use Text::VisualWidth::PP;
@@ -53,7 +53,7 @@ Be aware that **encode** and **decode** method alter the values of given
 arguments.  Because they return results as a list too, this can be
 done more simply.
 
-    print $conceal->decode(expand($xform->encode(<>)));
+    print $conceal->decode(expand($conceal->encode(<>)));
 
 Next program implements ANSI terminal sequence aware expand command.
 
@@ -64,7 +64,7 @@ Next program implements ANSI terminal sequence aware expand command.
         match  => qr/[^\t\n]+/,
     );
     while (<>) {
-        print $conceal->decode(expand($xform->encode($_)));
+        print $conceal->decode(expand($conceal->encode($_)));
     }
 
 Calling **decode** method with many arguments is not a good idea, since
@@ -77,7 +77,7 @@ into single chunk if possible.
 
 - **new**
 
-    Create transform object.  Takes following parameters.
+    Create conceal object.  Takes following parameters.
 
     - **length** => _function_
 
@@ -87,16 +87,21 @@ into single chunk if possible.
 
         Specify text area to be replaced.  Default is `qr/.+/s`.
 
+    - **max** => _number_
+
+        When the maximum number of replacement is known, give it by **max**
+        parameter to avoid unnecessary work.
+
     - **test** => _regex_ or _sub_
 
         Specify regex or subroutine to test if the argument is to be processed
-        or not.  Default is **undef**, so all arguments will be subject to
+        or not.  Default is **undef**, and all arguments will be subject to
         replace.
 
     - **except** => _string_
 
-        Transformation is done by replacing text with different string which
-        can not be found in all arguments.  This parameter gives additional
+        Text concealing is done by replacing text with different string which
+        can not be found in any arguments.  This parameter gives additional
         string which also to be taken care of.
 
     - **visible** => _number_
@@ -104,19 +109,19 @@ into single chunk if possible.
 
             With default value 0, this module uses characters in the range:
 
-                [0x01=>0x07], [0x10=>0x1f], [0x21=>0x7e], [0x81=>0xfe]
+                [0x01 => 0x07], [0x10 => 0x1f], [0x21 => 0x7e], [0x81 => 0xfe]
 
         - [1](https://metacpan.org/pod/1)
 
             Use printable characters first, then use non-printable characters.
 
-                [0x21=>0x7e], [0x01=>0x07], [0x10=>0x1f], [0x81=>0xfe]
+                [0x21 => 0x7e], [0x01 => 0x07], [0x10 => 0x1f], [0x81 => 0xfe]
 
         - [2](https://metacpan.org/pod/2)
 
             Use only printable characters.
 
-                [0x21=>0x7e]
+                [0x21 => 0x7e]
 
 - **encode**
 - **decode**
@@ -133,7 +138,7 @@ original, or it can even disappear.
 If an argument is trimmed down to single byte in a result, and it have
 to be recovered to wide character, it is replaced by single space.
 
-Replacement string is made of characters those can not be found in all
+Replacement string is made of characters those are not found in any
 arguments.  So if they contains all characters in the given range,
 **encode** stop to work.  It requires at least two.
 
