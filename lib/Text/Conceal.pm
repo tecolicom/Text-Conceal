@@ -66,7 +66,7 @@ sub encode {
     my $match = $obj->{match} or die;
     my $test = $obj->{test};
     for my $arg (grep defined, @_) {
-	not $test or $test->($arg) or next;
+	$test->($arg) or next if $test;
 	$arg =~ s{$match}{
 	    if (my($replace, $regex, $len) = $conceal->(${^MATCH})) {
 		push @{$obj->{replace}}, [ $regex, ${^MATCH}, $len ];
