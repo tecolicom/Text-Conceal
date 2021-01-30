@@ -277,19 +277,19 @@ string which also to be taken care of.
 
 =over 4
 
-=item L<0>
+=item C<0>
 
 With default value 0, this module uses characters in the range:
 
     [0x01 => 0x07], [0x10 => 0x1f], [0x21 => 0x7e], [0x81 => 0xfe]
 
-=item L<1>
+=item C<1>
 
 Use printable characters first, then use non-printable characters.
 
     [0x21 => 0x7e], [0x01 => 0x07], [0x10 => 0x1f], [0x81 => 0xfe]
 
-=item L<2>
+=item C<2>
 
 Use only printable characters.
 

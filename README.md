@@ -105,19 +105,19 @@ into single chunk if possible.
         string which also to be taken care of.
 
     - **visible** => _number_
-        - L<0>
+        - `0`
 
             With default value 0, this module uses characters in the range:
 
                 [0x01 => 0x07], [0x10 => 0x1f], [0x21 => 0x7e], [0x81 => 0xfe]
 
-        - [1](https://metacpan.org/pod/1)
+        - `1`
 
             Use printable characters first, then use non-printable characters.
 
                 [0x21 => 0x7e], [0x01 => 0x07], [0x10 => 0x1f], [0x81 => 0xfe]
 
-        - [2](https://metacpan.org/pod/2)
+        - `2`
 
             Use only printable characters.
 
