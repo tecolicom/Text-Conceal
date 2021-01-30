@@ -145,7 +145,7 @@ sub concealer {
 	return if $len < 1;
 	my $a = $a[ (state $n)++ % @a ];
 	my $bl = $len - 1;
-	( $a . ($b x $bl), qr/\G${lead}\K\Q$a$b\E{0,$bl}(?!\Q$b\E)/, $len );
+	( $a . ($b x $bl), qr/\A${lead}\K\Q$a$b\E{0,$bl}(?!\Q$b\E)/, $len );
     };
 }
 
