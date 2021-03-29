@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/kaz-utashiro/Text-Conceal.svg?branch=master)](https://travis-ci.com/kaz-utashiro/Text-Conceal)
+[![Actions Status](https://github.com/kaz-utashiro/Text-Conceal/workflows/test/badge.svg)](https://github.com/kaz-utashiro/Text-Conceal/actions) [![MetaCPAN Release](https://badge.fury.io/pl/Text-Conceal.svg)](https://metacpan.org/release/Text-Conceal)
 # NAME
 
 Text::Conceal - conceal and recover interface for text processing
