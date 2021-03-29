@@ -134,7 +134,7 @@ sub concealer {
     };
     for my $i (@range) {
 	my $c = pack "C", $i;
-	push @a, $c unless /\Q$c/;
+	push @a, $c if index($_, $c) < 0;
 	last if $max && @a > $max;
     }
     return if @a < 2;
