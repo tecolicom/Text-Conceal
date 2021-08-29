@@ -141,7 +141,7 @@ sub concealer {
     my $lead = do { local $" = ''; qr/[^\Q@a\E]*+/ };
     my $b = shift @a;
     return sub {
-	my $len = $obj->{length}->(+shift =~ s/\X\cH+//gr);
+	my $len = $obj->{length}->($_[0] =~ s/\X\cH+//gr);
 	return if $len < 1;
 	my $a = $a[ (state $n)++ % @a ];
 	my $bl = $len - 1;
