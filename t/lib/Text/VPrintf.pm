@@ -13,15 +13,12 @@ use Text::Conceal;
 sub vprintf  { &printf (@_) }
 sub vsprintf { &sprintf(@_) }
 
-our $IS_TARGET = qr/[\e\b\P{ASCII}]/;
-our $VISUAL_WIDTH = \&vwidth;
-
 sub sprintf {
     my($format, @args) = @_;
     my $conceal = Text::Conceal->new(
 	except => $format,
-	test   => $IS_TARGET,
-	length => $VISUAL_WIDTH,
+	test   => qr/[\e\b\P{ASCII}]/,
+	length => \&vwidth,
 	max    => int @args,
 	);
     $conceal->encode(@args) if $conceal;
@@ -46,7 +43,12 @@ END
 sub vwidth {
     local $_ = shift;
     my $w;
-    while (/\G(?:(?<zero>\p{Nonspacing_Mark})|(?<two>\p{IsWideSpacing})|\X)/g) {
+    while (m{\G  (?:
+		 (?<zero> \p{Nonspacing_Mark} )
+	     |   (?<two>  \p{IsWideSpacing} )
+	     |   \X
+	     )
+	}xg) {
 	$w += $+{zero} ? 0 : $+{two} ? 2 : 1;
     }
     $w;
