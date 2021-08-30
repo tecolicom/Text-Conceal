@@ -168,10 +168,6 @@ __END__
 
 Text::Conceal - conceal and recover interface for text processing
 
-=head1 VERSION
-
-Version 0.99
-
 =head1 SYNOPSIS
 
     use Text::Conceal;
@@ -182,6 +178,10 @@ Version 0.99
     $conceal->encode(@args);
     $_ = foo(@args);
     $conceal->decode($_);
+
+=head1 VERSION
+
+Version 0.99
 
 =head1 DESCRIPTION
 
@@ -343,6 +343,8 @@ continuous missing is allowed.  Less characters, more confusion.
 This module is originally implemented as a part of
 L<Text::VisualPrintf> module.
 
+=item L<Text::ANSI::Printf>, L<https://github.com/kaz-utashiro/Text-ANSI-Printf>
+
 =back
 
 =head1 AUTHOR
@@ -351,7 +353,7 @@ Kazumasa Utashiro
 
 =head1 LICENSE
 
-Copyright 2020 Kazumasa Utashiro.
+Copyright 2020-2021 Kazumasa Utashiro.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
