@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/kaz-utashiro/Text-Conceal/workflows/test/badge.svg)](https://github.com/kaz-utashiro/Text-Conceal/actions) [![MetaCPAN Release](https://badge.fury.io/pl/Text-Conceal.svg)](https://metacpan.org/release/Text-Conceal)
+[![Actions Status](https://github.com/tecolicom/Text-Conceal/workflows/test/badge.svg)](https://github.com/tecolicom/Text-Conceal/actions) [![MetaCPAN Release](https://badge.fury.io/pl/Text-Conceal.svg)](https://metacpan.org/release/Text-Conceal)
 # NAME
 
 Text::Conceal - conceal and recover interface for text processing
@@ -149,12 +149,12 @@ continuous missing is allowed.  Less characters, more confusion.
 
 # SEE ALSO
 
-- [Text::VisualPrintf](https://metacpan.org/pod/Text%3A%3AVisualPrintf), [https://github.com/kaz-utashiro/Text-VisualPrintf](https://github.com/kaz-utashiro/Text-VisualPrintf)
+- [Text::VisualPrintf](https://metacpan.org/pod/Text%3A%3AVisualPrintf), [https://github.com/tecolicom/Text-VisualPrintf](https://github.com/tecolicom/Text-VisualPrintf)
 
     This module is originally implemented as a part of
     [Text::VisualPrintf](https://metacpan.org/pod/Text%3A%3AVisualPrintf) module.
 
-- [Text::ANSI::Printf](https://metacpan.org/pod/Text%3A%3AANSI%3A%3APrintf), [https://github.com/kaz-utashiro/Text-ANSI-Printf](https://github.com/kaz-utashiro/Text-ANSI-Printf)
+- [Text::ANSI::Printf](https://metacpan.org/pod/Text%3A%3AANSI%3A%3APrintf), [https://github.com/tecolicom/Text-ANSI-Printf](https://github.com/tecolicom/Text-ANSI-Printf)
 
 # AUTHOR
 
@@ -162,7 +162,7 @@ Kazumasa Utashiro
 
 # LICENSE
 
-Copyright 2020-2022 Kazumasa Utashiro.
+Copyright 2020-2023 Kazumasa Utashiro.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

@@ -338,12 +338,12 @@ continuous missing is allowed.  Less characters, more confusion.
 
 =over 4
 
-=item L<Text::VisualPrintf>, L<https://github.com/kaz-utashiro/Text-VisualPrintf>
+=item L<Text::VisualPrintf>, L<https://github.com/tecolicom/Text-VisualPrintf>
 
 This module is originally implemented as a part of
 L<Text::VisualPrintf> module.
 
-=item L<Text::ANSI::Printf>, L<https://github.com/kaz-utashiro/Text-ANSI-Printf>
+=item L<Text::ANSI::Printf>, L<https://github.com/tecolicom/Text-ANSI-Printf>
 
 =back
 
@@ -353,7 +353,7 @@ Kazumasa Utashiro
 
 =head1 LICENSE
 
-Copyright 2020-2022 Kazumasa Utashiro.
+Copyright 2020-2023 Kazumasa Utashiro.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
