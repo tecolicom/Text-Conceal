@@ -1,6 +1,6 @@
 package Text::Conceal;
 
-our $VERSION = '1.01';
+our $VERSION = '1.02';
 
 use v5.14;
 use warnings;
@@ -181,7 +181,7 @@ Text::Conceal - conceal and recover interface for text processing
 
 =head1 VERSION
 
-Version 1.01
+Version 1.02
 
 =head1 DESCRIPTION
 
