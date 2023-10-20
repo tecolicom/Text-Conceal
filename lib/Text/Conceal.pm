@@ -297,13 +297,12 @@ Use only printable characters.
 
 =back
 
-=begin comment
+=item B<ordered> => *bool*
 
-=item B<ordered>
-
-...
-
-=end comment
+Ensures that the parameters given and the order in which they appear in 
+the output do not change. The default is set to 1; if set to 0, it will 
+be handled correctly even if they appear in a different order, a 
+behavior that may lead to instability.
 
 =back
 
