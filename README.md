@@ -16,7 +16,7 @@ Text::Conceal - conceal and recover interface for text processing
 
 # VERSION
 
-Version 1.02
+Version 1.03
 
 # DESCRIPTION
 
