@@ -85,8 +85,9 @@ sub decode {
     my @replace = @{$obj->{replace}} or return @_;
   ARGS:
     for (@_) {
-	while (my($i, $r) = each @replace) {
-	    my($regex, $orig, $len) = @$r;
+	# do not use "each @replace" here
+	for my $i (0 .. $#replace) {
+	    my($regex, $orig, $len) = @{$replace[$i]};
 	    if (s/$regex/_replace(${^MATCH}, $orig, $len)/pe) {
 		if ($obj->{duplicate}) {
 		    ;
