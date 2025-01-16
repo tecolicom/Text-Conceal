@@ -86,7 +86,7 @@ sub decode {
   ARGS:
     for (@_) {
 	# do not use "each @replace" here
-	for my $i (0 .. $#replace) {
+	for my $i (keys @replace) {
 	    my($regex, $orig, $len) = @{$replace[$i]};
 	    if (s/$regex/_replace(${^MATCH}, $orig, $len)/pe) {
 		if ($obj->{duplicate}) {
@@ -369,7 +369,7 @@ Kazumasa Utashiro
 
 =head1 LICENSE
 
-Copyright 2020-2023 Kazumasa Utashiro.
+Copyright 2020-2025 Kazumasa Utashiro.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
