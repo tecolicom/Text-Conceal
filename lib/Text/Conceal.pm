@@ -29,6 +29,7 @@ my %default = (
     visible   => 0,
     ordered   => 1,
     duplicate => 0,
+    emptyzero => 0,
 );
 
 sub new {
@@ -88,6 +89,7 @@ sub decode {
 	# do not use "each @replace" here
 	for my $i (keys @replace) {
 	    my($regex, $orig, $len) = @{$replace[$i]};
+	    $regex // next;
 	    if (s/$regex/_replace(${^MATCH}, $orig, $len)/pe) {
 		if ($obj->{duplicate}) {
 		    ;
@@ -146,7 +148,13 @@ sub concealer {
     my $b = shift @a;
     return sub {
 	my $len = $obj->{length}->($_[0] =~ s/\X\cH+//gr);
-	return if $len < 1;
+	if ($len == 0) {
+	    if ($obj->{emptyzero}) {
+		return("", undef, $len);
+	    } else {
+		return;
+	    }
+	}
 	my $a = $a[ (state $n)++ % @a ];
 	my $bl = $len - 1;
 	( $a . ($b x $bl), qr/\A${lead}\K\Q$a$b\E{0,$bl}(?!\Q$b\E)/, $len );
@@ -316,6 +324,18 @@ time, the conversion fails. By setting this parameter to 1, it is
 possible to allow a string to appear multiple times. However, doing so
 will increase the probability of failure if a large number of strings
 are attempted to be converted.
+
+=item B<emptyzero> => I<bool> (default 0)
+
+It is possible that the string to be converted does not have a display
+width.  For example, it may be a zero-width character such as
+C<\N{WORD JOINER}>, or it may be an ANSI sequence with no content.
+Since it is impossible to generate a zero-width replacement string, in
+such cases, the default is to do no conversion, possibly yielding a
+different result than desired.  If C<emptyzero> is true, a string with
+a width of zero is converted to an empty string.  Naturally, the
+original string will be lost, but it should not be visually
+distinguishable.  Which one you want is up to you.
 
 =back
 
