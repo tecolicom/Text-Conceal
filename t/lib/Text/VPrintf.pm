@@ -43,11 +43,6 @@ sub printf {
     $fh->print(&sprintf(@_));
 }
 
-{
-    no strict 'refs';
-    *{"Is_Emoji_Modifier"} = sub { "1F3FB\t1F3FF\n" };
-};
-
 1;
 
 __END__
