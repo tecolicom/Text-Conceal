@@ -9,6 +9,7 @@ our @EXPORT_OK = qw(&vprintf &vsprintf);
 
 use Data::Dumper;
 use Text::Conceal;
+use Text::VisualWidth::PP qw(vwidth);
 
 sub vprintf  { &printf (@_) }
 sub vsprintf { &sprintf(@_) }
@@ -46,36 +47,6 @@ sub printf {
     no strict 'refs';
     *{"Is_Emoji_Modifier"} = sub { "1F3FB\t1F3FF\n" };
 };
-
-sub IsZeroWidth {
-    return <<"END";
-+utf8::Nonspacing_Mark
-+utf8::Default_Ignorable_Code_Point
-+Is_Emoji_Modifier
-END
-}
-
-sub IsWideSpacing {
-    return <<"END";
-+utf8::East_Asian_Width=Wide
-+utf8::East_Asian_Width=FullWidth
--IsZeroWidth
-END
-}
-
-sub vwidth {
-    local $_ = shift;
-    my $w;
-    while (m{\G  (?:
-		 (?<zero> \p{IsZeroWidth} )
-	     |   (?<two>  \p{IsWideSpacing} )
-	     |   \X
-	     )
-	}xg) {
-	$w += $+{zero} ? 0 : $+{two} ? 2 : 1;
-    }
-    $w;
-}
 
 1;
 
