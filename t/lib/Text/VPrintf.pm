@@ -42,11 +42,16 @@ sub printf {
     $fh->print(&sprintf(@_));
 }
 
+{
+    no strict 'refs';
+    *{"Is_Emoji_Modifier"} = sub { "1F3FB\t1F3FF\n" };
+};
+
 sub IsZeroWidth {
     return <<"END";
 +utf8::Nonspacing_Mark
 +utf8::Default_Ignorable_Code_Point
-+utf8::Line_Break=E_Modifier
++Is_Emoji_Modifier
 END
 }
 

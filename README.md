@@ -138,17 +138,18 @@ into single chunk if possible.
         will increase the probability of failure if a large number of strings
         are attempted to be converted.
 
-    - **emptyzero** => _bool_ (default 0)
+    - **zerowidth** => _string_ (default undef)
 
         It is possible that the string to be converted does not have a display
         width.  For example, it may be a zero-width character such as
         `\N{WORD JOINER}`, or it may be an ANSI sequence with no content.
-        Since it is impossible to generate a zero-width replacement string, in
-        such cases, the default is to do no conversion, possibly yielding a
-        different result than desired.  If `emptyzero` is true, a string with
-        a width of zero is converted to an empty string.  Naturally, the
-        original string will be lost, but it should not be visually
-        distinguishable.  Which one you want is up to you.
+        Since it is impossible to generate a zero-width alternative string, in
+        such cases no conversion is done by default, and you will probably get
+        an undesirable result.  If an empty string is given for `zerowidth`,
+        the original data will be lost, but it should be visually
+        indistinguishable.  If some mark (e.g., "\\0") is given, the mark will
+        appear in the result, and it may be possible to deal with it in some
+        way from the surrounding information.
 
 - **encode**
 - **decode**
